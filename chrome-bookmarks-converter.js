@@ -2,7 +2,7 @@
  * Chrome Bookmarks Converter
  * v1.0.0
  *
- * Convert a standard exported Google Chrome bookmarks HTML file into a JSON file using JavaScript
+ * Convert a standard exported Google Chrome bookmarks HTML file into a JSON file using JavaScript.
  *
  * @summary Use JavaScript to convert an exported Chrome bookmarks HTML file. Export the results to JSON.
  * @author Jason Snelders <jason@jsnelders.com>
