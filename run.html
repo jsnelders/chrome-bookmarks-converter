@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Chrome Bookmarks Converter</title>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="chrome-bookmarks-converter.js"></script>
+    </head>
+    <body>
+        <h1>Chrome Bookmarks Converter</h1>
+        <p><i>v1.0.0 (14 Novermber 2019)</i></p>
+
+        <p>
+            Raw and rough and hacked together over the last couple of hours to get the basics working. More refinement to come.
+        </p>
+        <p>
+            Place a file named "bookmarks.html" in the same directory and select "Convert".<br>
+            For large HTML files, give the browser a few seconds to display after the complete alert shows.<br>
+            NOTE: You'll need to run "run.html" under http://localhost, not directly from the file system (e.g. file:///run.html) - Chrome will spit the dummy.
+        </p>
+
+        <button type="button" onClick="runConverterOnClick();">Convert</button>
+
+        <h2>JSON Result</h2>
+        <textarea id="output" style="width: 100%; height: 100%"></textarea>
+    </body>
+</html>
