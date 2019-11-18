@@ -1,24 +1,66 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-AU">
     <head>
         <title>Chrome Bookmarks Converter</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+
+        <link rel="stylesheet" href="vendor/w3.4.13.css">
     </head>
     <body>
-        <h1>Chrome Bookmarks Converter</h1>
-        <p><i>v1.0.0 (14 Novermber 2019)</i></p>
+        <div class="w3-main w3-padding-16">
 
-        <p>
-            Raw and rough and hacked together over the last couple of hours to get the basics working. More refinement to come.
-        </p>
-        <p>
-            Place a file named <b>"bookmarks.html"</b> in the same directory and select "Convert".<br>
-            For large HTML files, give the browser a few seconds to display after the complete alert shows.<br>
-            NOTE: You'll need to run "run.html" under http://localhost, not directly from the file system (e.g. file:///run.html) - Chrome will spit the dummy.
-        </p>
+            <!-- Header -->
+            <header class="w3-container">
+                <h1>Chrome Bookmarks Converter</h1>
+            </header>
 
-        <button type="button" onClick="runConverterOnClick();">Convert</button>
-
-        <h2>JSON Result</h2>
-        <textarea id="output" style="width: 100%; height: 100%"></textarea>
+            <div>
+                <div class="w3-container">
+                    <p><i>v1.1 (18 Novermber 2019)</i></p>
+    
+                    <p>
+                        Raw, rough and hacked together to get the basics working. More refinement to come.
+                    </p>
+                    <p>
+                        Under <i>Chrome Bookmarks HTML</i> select a Chrome bookmarks file you have exported.<br>
+                        Then select <i>Read Selected File</i>.<br>
+                        Once the contents of the file have been read into the text area you will be prompted to covert the file.<br>
+                        Simply select <i>Convert to JSON</i> and wait for the result to appear under <i>JSON Result</i>.
+                        <br><br>
+                        NOTE: A modern, up-to-date browser (such as Chrome or FireFox) is currently required to run this converter.
+                    </p>                    
+                </div>
+                <div class="w3-row">
+                    <div class="w3-col m6 w3-container">
+                        <h2>Chrome Bookmarks HTML</h2>
+                        <div>
+                            <input type="file" id="bookmarksFile">
+                            <button type="button" id="processFile" onclick="onReadSelectedFile();">Read Selected File</button>
+                            <button type="button" id="convertToJson" onClick="onConvertToJson();" disabled>Convert to JSON</button>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 w3-container">
+                        <h2>JSON Result</h2>
+                    </div>
+                </div>
+                <div class="w3-row">
+                    <div class="w3-col m6 w3-container">
+                        <textarea id="input" rows="12" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="w3-col m6 w3-container">
+                        <textarea id="output" rows="12" style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
