@@ -65,7 +65,14 @@ function ChromBookmarkConverter()
         {
             if (el.tagName == "DL")
             {
-                parentThis.processDL(el, 1, parentThis.bookmarks, parentThis.bookmarks.folders);
+                var currentFolder = {
+                    type: "folder",
+                    items: []
+                };
+
+                parentThis.bookmarks.folders.push(currentFolder);
+
+                parentThis.processDL(el, 1, currentFolder);
             }
             else
             {
@@ -81,14 +88,18 @@ function ChromBookmarkConverter()
     /** 
      * Process a <DL> element and all its children.
     */
-    this.processDL = function(dl, parentCounter, bookmarks, parent)
+    this.processDL = function(dl, parentCounter, parent)
     {
         var parentThis = this;
 
-        var folder = [];
+        //var folder = [];
         var counter = 0;
         var h3 = {};
-        var newSubFolder = [];
+        // var currentFolder = [];
+        var currentFolder = {
+            type: "folder",
+            items: []
+        };
         var link = {};
 
         var dlElement = $(dl);
@@ -102,42 +113,59 @@ function ChromBookmarkConverter()
             var currentID = parentCounter + "." + counter;
 
 
-            if (h3_ready == true && el.tagName != "DL")
+            if (h3_ready == true && el.tagName.toLowerCase() != "DL".toLowerCase())
             {
                 // Expecting a folder next but not found. Cancel the ready, and raise a warning.
                 h3_ready = false;
                 parentThis.warnIt("H3 Ready. Expecting a DL but not found. Next element is (" + el.tagName + "): ", el);
 
                 // Push the last heading, and continue normally.
-                folder.push(h3);
+                //folder.push(h3);
+                currentFolder.items.push(h3);
             }
 
 
-            if (el.tagName == "DL")
+            if (el.tagName.toLowerCase() == "DL".toLowerCase())
             {
-                newSubFolder = [];
+                // currentFolder = [];
+
+                // if (h3_ready == true)
+                // {
+                //     // Last elements was a heading. Addi t to the new sub-solder
+                //     currentFolder.push(h3);
+                // }
+
+                // parent.push(currentFolder);
+
+                // parentThis.processDL(el, currentID, currentFolder);
+
+
+                currentFolder = {
+                    type: "folder",
+                    items: []
+                };
 
                 if (h3_ready == true)
                 {
-                    // Last elements was a heading. Addi t to the new sub-solder
-                    newSubFolder.push(h3);
+                    // Last elements was a heading. Add,it to the new sub-solder
+                    currentFolder.items.push(h3);
+
+                    h3_ready = false;
                 }
 
+                parent.items.push(currentFolder);
 
-                parent.push(newSubFolder);
-
-                parentThis.processDL(el, currentID, bookmarks, newSubFolder);
+                parentThis.processDL(el, currentID, currentFolder);
             }
 
 
-            if (el.tagName == "H3")
+            if (el.tagName.toLowerCase() == "H3".toLowerCase())
             {
                 // Title of a folder/sub-folder
                 var h3Element = $(el);
                 var h3Text = h3Element.text();
                 var h3AddDate = h3Element.attr("add_date");
                 var h3LastModified = h3Element.attr("last_modified");
-                var h3PersonalToolbarFolder = h3Element.attr("personal_toolbar_folder");
 
                 h3 = {
                     type: "header",
@@ -152,7 +180,7 @@ function ChromBookmarkConverter()
             }
 
 
-            if (el.tagName == "A")
+            if (el.tagName.toLowerCase() == "a")
             {
                 // Link
                 var aElement = $(el);
@@ -170,12 +198,13 @@ function ChromBookmarkConverter()
                     icon: aIcon
                 };
 
-                folder.push(link);
+                //folder.push(link);
+                currentFolder.items.push(link);
             }
         });
 
 
-        parent.push(folder);
+        //parent.push(folder);
     }
 
 
