@@ -97,6 +97,9 @@ function ChromBookmarkConverter()
         var h3 = {};
         var currentFolder = {
             type: "folder",
+            title: "",
+            add_date: "",
+            last_modified: "",
             items: []
         };
         var link = {};
@@ -129,13 +132,16 @@ function ChromBookmarkConverter()
             {
                 currentFolder = {
                     type: "folder",
+                    title: h3.title,
+                    add_date: h3.add_date,
+                    last_modified: h3.last_modified,
                     items: []
                 };
 
                 if (h3_ready == true)
                 {
                     // Last elements was a heading. Add,it to the new sub-solder
-                    currentFolder.items.push(h3);
+                    //currentFolder.items.push(h3);
 
                     h3_ready = false;
                 }
