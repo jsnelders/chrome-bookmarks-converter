@@ -5,7 +5,7 @@ function onConvertToJson()
     // });
 
     runConverterSelectedFile(function() {
-        alert("Conversion complete.\nFor large HTML files, give the browser a few seconds to display the results in the text box.");
+        //alert("Conversion complete.\nFor large HTML files, give the browser a few seconds to display the results in the text box.");
     });
 }
 
@@ -103,7 +103,7 @@ function onReadSelectedFile()
             //console.log("evt.target.result=", evt.target.result);
             document.getElementById("input").value = evt.target.result;
 
-            alert("Read complete.\nFor large HTML files, give the browser a few seconds to display the results in the text box.");
+            //alert("Read complete.\nFor large HTML files, give the browser a few seconds to display the results in the text box.");
         };
 
         reader.onerror = function (evt) 
@@ -120,5 +120,5 @@ function onReadSelectedFile()
 function onInputChanged()
 {
     $("#convertToJson").prop("disabled", false);
-    alert("Ready to convert");
+    //alert("Ready to convert");
 }

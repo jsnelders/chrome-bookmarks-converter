@@ -95,7 +95,6 @@ function ChromBookmarkConverter()
         //var folder = [];
         var counter = 0;
         var h3 = {};
-        // var currentFolder = [];
         var currentFolder = {
             type: "folder",
             items: []
@@ -119,27 +118,15 @@ function ChromBookmarkConverter()
                 h3_ready = false;
                 parentThis.warnIt("H3 Ready. Expecting a DL but not found. Next element is (" + el.tagName + "): ", el);
 
+                console.log("h3", h3);
+
                 // Push the last heading, and continue normally.
-                //folder.push(h3);
                 currentFolder.items.push(h3);
             }
 
 
             if (el.tagName.toLowerCase() == "DL".toLowerCase())
             {
-                // currentFolder = [];
-
-                // if (h3_ready == true)
-                // {
-                //     // Last elements was a heading. Addi t to the new sub-solder
-                //     currentFolder.push(h3);
-                // }
-
-                // parent.push(currentFolder);
-
-                // parentThis.processDL(el, currentID, currentFolder);
-
-
                 currentFolder = {
                     type: "folder",
                     items: []
@@ -198,13 +185,14 @@ function ChromBookmarkConverter()
                     icon: aIcon
                 };
 
-                //folder.push(link);
-                currentFolder.items.push(link);
+                console.log("link", link);
+
+                parent.items.push(link);
             }
         });
 
 
-        //parent.push(folder);
+        //parent.items.push(currentFolder);
     }
 
 
